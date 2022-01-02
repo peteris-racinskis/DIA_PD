@@ -9,10 +9,6 @@ YEAR="year"
 ROUND="round"
 CNT_RCV="to_country_id"
 CNT_SND="from_country_id"
-FIN="final"
-SFX="semi-final"
-SF1="semi-final-1"
-SF2="semi-final-2"
 SCR="total_points"
 
 # stolen from stackoverflow because I'm lazy.
@@ -89,9 +85,9 @@ def round_names(df: DataFrame, year):
 
 def get_stage_matrices(df: DataFrame, minyear, maxyear) -> List[np.ndarray]:
     limyears = (minyear, maxyear)
-    rounds = (FIN, SF1, SF2, SFX)
     trimmed = select_years(df, limyears)
     years = trimmed[YEAR].unique()
+    rounds = tuple(trimmed[ROUND].unique())
     all_participants = get_participants(trimmed, limyears, rounds)
     totalsize = len(all_participants)
     index = index_codes(all_participants)

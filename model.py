@@ -1,5 +1,7 @@
 import numpy as np
 from sys import float_info
+
+from numpy import core
 from datagen import STARTYEAR, STOPYEAR, OUTFILE as INFILE
 OUTFILE=f"Results-{STARTYEAR}-{STOPYEAR}"
 eps = float_info.epsilon
@@ -110,9 +112,12 @@ def corrections(matrix: np.ndarray) -> np.ndarray:
     N, _ = matrix.shape
     row_probabilities = np.sum(matrix, axis=1)
     row_corrections = 1 / (N * row_probabilities + eps)
-    cell_corrections = (1 / (N ** 2 * matrix.T * row_probabilities + eps)).T
+    cell_corrections = (1 / (N ** 2 * matrix.T * row_corrections + eps)).T
     cell_corrections = np.where(np.identity(N) == 1, 0, cell_corrections)
     return row_corrections, cell_corrections
+
+def weights(matrix: np.ndarray) -> np.ndarray:
+    return np.where(np.identity(matrix.shape[0]) == 1, 0, 1 / (matrix + eps))
 
 def get_correction_matrix(dataset: np.ndarray, index: dict, countries: dict, norm=False) -> np.ndarray:
     coincidence = coincidence_count(dataset)
@@ -122,8 +127,14 @@ def get_correction_matrix(dataset: np.ndarray, index: dict, countries: dict, nor
     score_probability = normalized_score(cleared_avg, alpha=0.5)
     quals, cors = corrections(score_probability)
     correction_matrix = cors.T
-    return quals, correction_matrix
+    return quals, correction_matrix, index, countries
 
+def write_matrix(filename, comment, matrix: np.ndarray):
+    with open(filename, 'w') as  f:
+        f.write(f"#{comment}\n#\n")
+        for row in matrix:
+            s = ["{:.4f}".format(x) for x in row]
+            f.write(" ".join(s) + '\n')
 
 
 if __name__ == "__main__":
@@ -141,30 +152,36 @@ if __name__ == "__main__":
         index = {v:k for k,v in countries.items()}
     
     arr = np.reshape(np.fromfile(datafile, dtype=np.int64), shape)
-    '''
-    coincidence = coincidence_count(arr)
-    totals = coincidence_total(arr)
-    averages, dropped = edge_average(coincidence, totals, countries, thresh=10, alpha=0.5)
-    cleared, index, countries = clear_matrix(averages, index, countries, dropped)
-    average_recv = recv_average(cleared)
-    bias_coefficients = bias_matrix(cleared, average_recv)
-    blist = sorted_bias(bias_coefficients, countries)
-    correction_coefficients = corr_matrix(bias_coefficients)
-    dist_matrix = distance_measure(correction_coefficients)
+    average_quality, correction_matrix, index, countries = get_correction_matrix(arr, index, countries)
+    voting_weights = weights(correction_matrix)
+    dist_matrix = distance_measure(correction_matrix)
     d_list = sorted_bias(dist_matrix, countries, inv=True)
-    '''
-    average_quality, correction_matrix = get_correction_matrix(arr, index, countries)
 
+    newshape = correction_matrix.shape
 
     biasfile = OUTFILE + "-bias.txt"
     corrfile = OUTFILE + "-corr.txt"
     distfile = OUTFILE + "-dist.txt"
     namefile = OUTFILE + "-name.txt"
-    with open(distfile, 'w') as  f:
-        f.write("# Distance matrix from Eurovision score data. Doesn't abide by metric axioms\n#\n")
-        for row in dist_matrix:
-            s = ["{:.4f}".format(x) for x in row]
-            f.write(" ".join(s) + '\n')
+    shapefile_new = OUTFILE + "-shape.txt"
+    write_matrix(biasfile, 
+    "Model weights: score = w_i * s_i, with s_i being latent song quality variable", 
+    voting_weights)
+    write_matrix(corrfile, 
+    "Correction matrix for multiplying with normalized score matrix", 
+    correction_matrix)
+    write_matrix(distfile, 
+    "Distance matrix from Eurovision score data. p_ij * p_ji / 2", 
+    dist_matrix)
     with open(namefile, 'w') as f:
         [f.write(f"{y}\n") for x,y in countries.items()]
-    print()
+    with open(shapefile_new, 'w') as f:
+        [f.write(str(x) + "\n") for x in newshape]
+    
+
+    print("10 closest distances:")
+    for i in range(10):
+        print(d_list[i*2])
+    print("10 farthest distances:")
+    for i in range(10):
+        print(d_list[len(d_list)-1-i*2])

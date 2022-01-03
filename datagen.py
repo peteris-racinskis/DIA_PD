@@ -104,26 +104,29 @@ def get_stage_matrices(df: DataFrame, minyear, maxyear) -> List[np.ndarray]:
             instances.append((year, rnd))
     progress_bar(i,steps)
     print()
-    return matrices, instances
+    return matrices, instances, index
 
 
 if __name__ == "__main__":
     df = read_csv(INFILE)
     print(f"Reading dataset from: {INFILE}")
     print("Processing ... ")
-    stage_matrices, stages = get_stage_matrices(df, STARTYEAR, STOPYEAR)
+    stage_matrices, stages, countries = get_stage_matrices(df, STARTYEAR, STOPYEAR)
     score_dataset = np.stack(stage_matrices)
     datashape = score_dataset.shape
     shapefile = OUTFILE + "-shape.txt"
     stagefile = OUTFILE + "-stages.txt"
     datafile = OUTFILE + "-data.bin"
+    codefile = OUTFILE + "-countries.txt"
     with open(shapefile, 'w') as f:
-        f.write(str(datashape))
+        [f.write(str(x) + "\n") for x in datashape]
+    with open(codefile, 'w') as f:
+        [f.write(f"{y}\t{x}\n") for x,y in countries.items()]
     with open(stagefile, 'w') as f:
         i = 0
         for x in stages:
             f.write(f"{i}\t{x}\n")
             i += 1
-    score_dataset.tofile(datafile)
+    score_dataset.astype(np.int64).tofile(datafile)
     print(f"Preprocessed dataset shape in: {shapefile}")
     print(f"Preprocessed dataset contents in: {datafile}")

@@ -152,7 +152,7 @@ Var krietni palauzīt galvu, domājot par veidiem, kā to izdarīt. Pirmā ideja
 
 Apsverot šo un citus semestra gaitā iepazītos tipveida rīkus datizraces uzdevumu risinājumam, īsti piemērots tieši šim uzdevumam nelikās neviens. Beigās tomēr tika nolemts īstenot savu, lielā mērā intuitīvi vadītu pieeju, cerībā, ka vismaz "kaimiņu būša-nas" principu izdosies atrast. Tā veitā lai pakāpeniski optimizētu šablonu, iterējot pār datu kopas elementiem, datu kopu var mēģināt reducēt uz formu, kur rezultāts atrodams algebriski. Šajā konkrētajā gadījumā tas darīts, nosakot vidējās empīriskās vērtības piešķirto punktu skaitam katram valstu pārim katrā virzienā, pārveidojot tās par divdimensionālu varbūtību sadalījumu un pielīdzinot rezultātu vienmērīgajam sadalījumam. 
 
-To dara, atrodot divus korekcijas koeficientus: $r_i$, kas vienādo rindu varbūtību summas (savā ziņā kompensējot $q_i$) un $c_{ij}$, kas vienādo visas varbūtības atlikušajā matricā un reizē ir arī korekcijas matricas vērtības. 
+To dara, atrodot divus korekcijas koeficientus: $r_i$, kas vienādo rindu varbūtību summas (savā ziņā kompensējot $q_i$) un $c_{ij}$, kas vienādo varbūtības koriģētās matricas kolonnās un reizē ir arī korekcijas matricas vērtības. 
 
 \begin{equation}
     p_i=\sum_{j\in [K']}p_{ij}
@@ -167,10 +167,10 @@ To dara, atrodot divus korekcijas koeficientus: $r_i$, kas vienādo rindu varbū
     p_{ij}'=p_{ij}*r_i
 \end{equation}
 \begin{equation}
-    p_{ij}'*c_{ij}=\frac{1}{KK'}
+    p_{ij}'*c_{ij}=\frac{\sum_{i\in[K]}p_{ij}'}{K}
 \end{equation}
 \begin{equation}
-    c_{ij}=\frac{1}{p_{ij}'KK'}
+    c_{ij}=\frac{\sum_{i\in[K]}p_{ij}'}{p_{ij}'K}
 \end{equation}
 \begin{equation}
     w_{ij}=\frac{1}{c_{ij}K}

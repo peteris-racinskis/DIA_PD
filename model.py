@@ -117,7 +117,8 @@ def corrections(matrix: np.ndarray) -> np.ndarray:
     return row_corrections, cell_corrections
 
 def weights(matrix: np.ndarray) -> np.ndarray:
-    return np.where(np.identity(matrix.shape[0]) == 1, 0, 1 / (matrix + eps))
+    N, _ = matrix.shape
+    return np.where(np.identity(N) == 1, 0, 1 / (matrix + eps)) * 1 / N
 
 def get_correction_matrix(dataset: np.ndarray, index: dict, countries: dict, norm=False) -> np.ndarray:
     coincidence = coincidence_count(dataset)

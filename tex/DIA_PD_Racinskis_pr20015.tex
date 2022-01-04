@@ -25,7 +25,7 @@
 \setcounter{page}{1}
 \newpage
 
-\textit{Piebilde:} praktiskā darba nosacīijumos nav norādīts sagaidāmais atskaites apjoms. Kursa aprakstā tas tiek saukts par kursa darbu, kas liecina, ka tiek gaidīts aptuveni 15-30lpp. garš dokuments ar atbilstošu ieguldītā darba un informācijas apjomu. Atvainojos, ja iesūtītā atskaite ir ievērojami plānāka, nekā tiek gaidīts - taču kaut kāds darbs ir padarīts, vairākas dienas laika ir iztērētas, sesijas grafiks liek virzīties tālāk pie citiem uzdevumiem, un, ja pastāv kaut neliela iespēja uzlabot gala vērtējumu, uzskatu, ka ir vērts iesūtīt pat potenciāli nepietiekamu rezultātu.
+\textit{Piebilde:} praktiskā darba nosacīijumos nav norādīts sagaidāmais atskaites apjoms. Kursa aprakstā tas tiek saukts par kursa darbu, kas liecina, ka tiek gaidīts aptuveni 15-30lpp. garš dokuments ar atbilstošu ieguldītā darba un informācijas apjomu. Atvainojos, ja iesūtītā atskaite ir ievērojami plānāka, nekā tiek gaidīts - taču kaut kāds darbs ir padarīts, vairākas dienas laika ir iztērētas, personīgais sesijas grafiks liek virzīties tālāk pie citiem uzdevumiem, un, ja pastāv kaut neliela iespēja uzlabot gala vērtējumu, uzskatu, ka ir vērts iesūtīt pat potenciāli nepietiekamu rezultātu.
 
 
 \section{Ievads}
@@ -96,9 +96,9 @@ un visu kopā apkopot korekciju matricā:
 \begin{equation}
     C=
     \begin{bmatrix}
-        c_{11} &  ... & c_{1K} \\
+        c_{11} &  ... & c_{1K'} \\
         \vdots & \ddots & \vdots \\
-        c_{K'1} &  ... & c_{K'K} 
+        c_{K1} &  ... & c_{KK'} 
     \end{bmatrix}
 \end{equation}
 
@@ -106,9 +106,9 @@ Lai šo korekciju matricu pielietotu rezultātu labošanai, punktu matricu (bez 
 \begin{equation}
     S=
     \begin{bmatrix}
-        s_{11} &  ... & s_{1K} \\
+        s_{11} &  ... & s_{1K'} \\
         \vdots & \ddots & \vdots \\
-        _{K'1} &  ... & s_{K'K} 
+        _{K1} &  ... & s_{KK'} 
     \end{bmatrix}
 \end{equation}
 \begin{equation}
@@ -131,28 +131,72 @@ Attiecīgi tiek izvirzīts sekojošs korekcijas modelis: tā kā iegūtas ir "at
 \end{equation}
 
 
-Jāmin, ka šādi nav iespējams atšķirt "kaimiņu būšanu" - ko varbūt gribētos raksturot kā tīri etniskas tuvības vai ģeopolitisku interešu sakritības motivētu nobīdi balosjumu rezultātos. No citiem faktoriem, kas arī atšķiras valstu starpā - kulturālas noslieces, demogrāfiskie sadalījumi, konkursa popularitāte, u.t.t. - radušās nobīdes skaitliski izskatītos precīzi tāpat. 
+Jāmin, ka šādi nav iespējams izšķirt tieši "kaimiņu būšanu" - ko varbūt gribētos rakstu-rot kā tīri etniskas tuvības vai ģeopolitisku interešu sakritības motivētu nobīdi balosjumu rezultātos. No citiem faktoriem, kas arī atšķiras valstu starpā - kulturālas noslieces, demogrāfiskie sadalījumi, konkursa popularitāte, u.t.t. - radušās nobīdes skaitliski izskatītos tāpat. 
 
 \subsection{Datu kopas}
 
 Kā jau minēts iepriekš, uzdevums ir par fenomenu, nevis tā radītu konkrētu datu kopu. Tāpēc iespējams ne tikai brīvi pēc saviem ieskatiem pārveidot vienu datu kopu, bet apzināti meklēt un izvēlēties jau maksimāli atbilstoši noformētu. Nav arī dots stingrs uzstādījums, ka obligāti jāstrādā ar visu konkursa vēsturi. Laika gaitā ir notikušas daudzas noteikumu un organizatoriskas izmaiņas, kas var apgrūtināt dažādu periodu rezultātu salīdzināšanu.
 
-Par datu kopu izvēlēta \textit{Eurovision Song Contest Dataset} \href{https://github.com/Spijkervet/eurovision-dataset}{(pieejama \textit{GitHub} repozitorijā)}, kur jau atrodams korpuss \textit{votes.csv}. Tajā katrā rindā dots notikuma gads, atbilstošā konkursa stadija (fināls; pusfināls; pirmais vai otrais pusfināls gados, kad ir divi), vērtējošā valsts un punktus saņemošā valsts. 
+Par datu kopu izvēlēta \textit{Eurovision Song Contest Dataset} \href{https://github.com/Spijkervet/eurovision-dataset}{(pieejama \textit{GitHub} repozitorijā)}, kur jau atrodams korpuss \textit{votes.csv}. Tajā katrā rindā dots notikuma gads, atbilstošā stadija (fināls; pusfināls; pirmais vai otrais pusfināls gados, kad ir divi), vērtējošā valsts un punktus saņemošā valsts. 
+
+Pietiek vien atvērt \href{https://en.wikipedia.org/wiki/Voting_at_the_Eurovision_Song_Contest}{\textit{Wikipedia} rakstu par konkursa balsošanas kārtību}, lai kristu nelielā panikā. Garākais (un, Latvijas iedzīvotājiem, interesantākais) posms ar samērā noturīgu balsošanas kārtību ir 1980-2015, tāpēc tālāk tieši ar to arī pārsvarā strādāts.
 
 \newpage
 \section{Metodes}
 
-Ciklu matrica nesniedz nekādu informāciju par virsotņu secību ciklā. Abiem 2. attēlā redzamajiem grafiem ir tā pati ciklu matrica 
-$$C=\begin{bmatrix}
-    1 & 1 & 1 & 1
-\end{bmatrix}$$
+\subsection{Modelis}
 
-, bet grafi ir dažādi, jo $E[G_1] \triangle E[G_2] = \lbrace
-\lbrace 1, 4\rbrace,
-\lbrace 1, 3\rbrace,
-\lbrace 2, 3\rbrace,
-\lbrace 2, 4\rbrace
-\rbrace$, lai arī izomorfi. Šī īpašība ļauj arī grafiem, kas pieder dažādām izomorfismu klasēm, būt vienādām ciklu matricām. 3. attēlā starp grafiem izomorfisms nepastāv, jo tikai vienam no tiem $\exists e = \lbrace u, v \rbrace \in E[G] : \deg(u) = \deg(v) = 4 $, kaut gan abos gadījumos ciklu matrica ir 
+Sadaļā 1.1. aprakstīts, kā varētu izskatīties korekcijas matrica, un radīta aptuvena nojausma par procesu, kas šādu matricu varētu ģenerēt, taču tā nav konstruktīva - svari $w_{ji}$ \textit{a priori} nav zināmi, tos nepieciešams noteikt empīriski. Līdz šim arī aplūkots tikai gadījums ar vienu $q_i$ "kvalitātes vērtību" sadalījumu. Dažādās konkursa kārtās šie sadalījumi var radikāli atšķirties. Vienam konkursa etapam korekcijas varētu vienkārši algebriski izrēķināt, taču, ja vēlamies noteikt korekcijas matricu $C$ noteikt globāli, jāveido modeļa šablons un jāapmāca.
+
+Var krietni palauzīt galvu, domājot par veidiem, kā to izdarīt. Pirmā ideja, kas varētu rasties, varētu būt vienkārši ņemt punktus tiešā veidā no datu kopas un apmācīt klasifikatoru formā (vērtējošā valsts, vērtējamā valsts) $\rightarrow$ vērtējums (kur vērtējums vai nu skaitliks novērtējums, vai diskrētu vērtību vektors, kur 1 apzīmē konkrētu punktu skaitu). Problēma ar šādu pieeju ir tāda, ka dažādu valstu "kvalitātes" vērtību sadalījumi var ievērojami atšķirties, t.i., dažām valstīm varbūt kopumā veicas labāk vai sliktāk, nekā citām, neatkarīgi no nobīdēm tieši nacionālās balsošanas rezultātā. Vērtējumu paredzēšanas uzdevumam tas netraucē, taču pēc tam grūti spriest, kā iegūtos rezultātus izmantot korekcijām. Turklāt gan ieejas vērtību kopa ir gana liela, salīdzinot ar pieejamo datu korpusa apjomu. Bieži vien pieejami pavisam nedaudzi novērtējumi no vienas valsts uz otru.
+
+Apsverot šo un citus semestra gaitā iepazītos tipveida rīkus datizraces uzdevumu risinājumam, īsti piemērots tieši šim uzdevumam nelikās neviens. Beigās tomēr tika nolemts īstenot savu, lielā mērā intuitīvi vadītu pieeju, cerībā, ka vismaz "kaimiņu būša-nas" principu izdosies atrast. Tā veitā lai pakāpeniski optimizētu šablonu, iterējot pār datu kopas elementiem, datu kopu var mēģināt reducēt uz formu, kur rezultāts atrodams algebriski. Šajā konkrētajā gadījumā tas darīts, nosakot vidējās empīriskās vērtības piešķirto punktu skaitam katram valstu pārim katrā virzienā, pārveidojot tās par divdimensionālu varbūtību sadalījumu un pielīdzinot rezultātu vienmērīgajam sadalījumam. 
+
+To dara, atrodot divus korekcijas koeficientus: $r_i$, kas vienādo rindu varbūtību summas (savā ziņā kompensējot $q_i$) un $c_{ij}$, kas vienādo visas varbūtības atlikušajā matricā un reizē ir arī korekcijas matricas vērtības. 
+
+\begin{equation}
+    p_i=\sum_{j\in [K']}p_{ij}
+\end{equation}
+\begin{equation}
+    p_i*r_i=\frac{1}{K}
+\end{equation}
+\begin{equation}
+    r_i = \frac{1}{p_i*K}
+\end{equation}
+\begin{equation}
+    p_{ij}'=p_{ij}*r_i
+\end{equation}
+\begin{equation}
+    p_{ij}'*c_{ij}=\frac{1}{KK'}
+\end{equation}
+\begin{equation}
+    c_{ij}=\frac{1}{p_{ij}'KK'}
+\end{equation}
+\begin{equation}
+    w_{ij}=\frac{1}{c_{ij}K}
+\end{equation}
+
+Par šī algoritma matemātisko pareizību pārliecības nav nekādas - pirmais kompensāci-jas solis koriģē $q_i$, balstoties uz stipri kropļotiem vērtējumiem, un svari tad tiek rēķināti no šī nekorektā starprezultāta. Taču vismaz virspusēji šķiet, ka iegūie rezultāti varētu būt noderīgi. 
+
+Iespējams, ka varētu šo procesu pilnveidot, ieviešot iterāciju un cerot uz konverģenci, atkārtoti veicot korekcijas aprēķinu koriģētiem datiem, lai gan šādas funkcionalitātes ieviešanai laika nav pieticis. Galvenais šķērslis ir šaubas par to, kā pareizi kombinēt soļos iegūtās korekcijas matricas - vai tas vispār ir pamatojams. Taču zināms, ka līdzīgas metodes izmanto citur datizracē, lai cīnītos ar t.s. \textit{distribution shift} jeb atšķirību starp modeļa ģenerētiem sadalījumiem un reāliem.
+
+\subsection{Datu priekšapstrāde}
+
+Pirms iespējams sākt aprēķinus, datu korpusu jāpārveido tiem padevīgā formā. Kopu ar kortežiem formā $(t,i,j,s)$ nepieciešams izteikt kā tensoru ar elementiem $s_{ijt}$, kur $t$ - konkursa etaps. Ja konkursa etapu dalībnieki un balsotāji vienmēr būtu tie paši, šis būtu triviāls uzdevums. Taču sarežģījumus rada fakts, ka neeksistējošas vērtības un nulles vērtības nav viens un tas pats. Ne katra dalībvalsts piedalās katrā etapā un ne katra dalībvalsts, kas balso, arī piedalās konkursā. Tāpēc neeksistējošas vērtības nepieciešams marķēt atsevišķi. Izvēlētais risinājums ir tās marķēt ar $-1$, un pēc tam datu apstrādē īpaši apstrādāt šādi marķētus ierakstus, kur nepieciešams. Vērtībām 10,12 tiek ieviesta jau iepriekš aprakstītā korekcija uz 9,10.
+
+Datu priekšapstrāde veikta repozitorijā pieejamajā \textit{Python} skriptā \textit{datagen.py}. Principā priekšapstrādes solī iespējams arī veikt vidējo vērtību rēķināšanu, kas droši vien arī būtu ātrāk nekā faktiski realizētajā tensora ģenerēšanas pieejā, taču tīri praktiski apsvērumu vadībā tika izlemts visas netriviālās datu manipulācijas atstāt atsevišķi: darba autors daudz labāk pazīstams ar n-dimensionālu homogēnu datu bloku skaitļošanas un lineārās algebras bibliotēku \textit{numpy} nekā ar 2-dimensionālu heterogēnu datu korpusu apstrādes bibliotēku \textit{pandas}. Izstrādes procesā vieglāk iteratīvi izmainīt visu procesu, strādājot ar jau gatavu datu tensoru. Lai nebūtu katru reizi jāveic tensora veidošana, kas aizņem gandrīz 40 sekundes, starprezultāts tiek saglabāts failā. Datu pārveidošanu ir iespējams paātrināt daudzkārtīgi, taču tad jāizmanto cita darbību secība, ko grūtāk atkļūdot. Reizi dažās stundās zaudēt 40s šķiet mazāks zaudējums, nekā pavadīt vairākas stundas, pārrakstot jau pietiekami labi strādājošu kodu. 
+
+Šī ir arī laba vieta tekstā, kur norādīt, ka šādam datu formātam matrica ar vērtējoša-jām un vērtejamām valstīm vienmēr ir kvadrātiska, t.i., $K = K'$. Iztrūkstošās šķautnes ir atbilstoši marķētas ar vērtībām ārpus parastā definīcijas apgabala..
+
+\subsection{Modeļa aprēķins}
+
+Modeļa aprēķins tiek veikts otrā \textit{Python} skriptā - \textit{model.py}. Pirms iespējams aprēķināt vidējās vērtības pār etapiem, nepieciešams noteikt katra balsojuma virziena (varētu teikt, orientēta grafa šķautnes) kopskaitu. To veic funkcija \textit{coincidence\_count}, kas atgriež matricu ar vērtībām formā $n_{ij}$ - reižu skaits, kad j-tā valsts balsojusi konkursā, kurā uzstājas i-tā. Piešķirto punktu summu atrod funkcija \textit{coincidence\_total}. Vidēji j-tās valsts i-tajai piešķirto novērtējumu tad atrod \textit{edge\_average}. 
+
+Papildus vidējās vērtības aprēķinam tiek noteikts arī kuras valstis jāizmet no kopējās matricas pēc sliekšņa kritērija - ja maksimālais $n_{ij}$ ir mazāks par slieksni, no matricas tiek izmestas i-tās rindas un i-tās kolonnas. Tādējādi tiek apkarota traucējoša parādība - valstīm, kas piedalījušās konkursā tikai dažas reizes, korekcijas koeficienti var būt krietni lielāki vai mazāki, nekā visām pārējām, jo lielo skaitļu likumam nav pieticis elementu, lai izlīdzinātu iegūto punktu skaitus un tuvotos sagaidāmajai vērtībai.
+
+Nākamais solis ir iegūto vidējo vērtību pārveidošana par varbūtību sadalījumu. Sāku-mā tas netika darīts, un rezultāts bija grūtības ar izsekošanu vērtību semantiskajai nozīmei un pareizu algoritma realizāciju. Strādājot ar varbūtībām, daudzas potenciālas programmatiskas kļūdas var novērst, vienkārši sekojot līdzi tam, ka rindu, kolonnu vai kopējā varbūtību summa matricā ir vienāda ar 1 (atkarībā no veicamajām darbībām). Papildus tiek veikts arī matemātiski pilnīgi nepamatots taču praktiski pašsaprotams solis - visām vidējo vērtējumu matricas vērtībām tiek pieskaitīta konstante $\alpha$, kas ir funkcijas parametrs. Tas tiek darīts, jo citādi nogrieztām vērtībām tiek aprēķināts svars 0 un korekcijas koeficients $+\infty$, kas korekcijas mērķiem neder. To var uztvert kā zaudētās informācijas ekstrapolāciju - valstis, kas ne reizi nav saņēmušas rangu 1-10, tik un tā gandrīz noteikti kādas balsis saņemtu, ja tiktu veikta izlase no balsis veidojošā sadalījuma. Visu augstāk minēto veic funkcija \textit{normalized\_score}.
+
+Visbeidzot, 2.1. sadaļā aprakstīto korekcijas matricas aprēķinu veic funkcija \textit{corrections}
 
 \newpage
 \section{Rezultāti}

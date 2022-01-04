@@ -1,7 +1,5 @@
 import numpy as np
 from sys import float_info
-
-from numpy import core
 from datagen import STARTYEAR, STOPYEAR, OUTFILE as INFILE
 OUTFILE=f"Results-{STARTYEAR}-{STOPYEAR}"
 eps = float_info.epsilon
@@ -16,26 +14,7 @@ def coincidence_total(tensor: np.ndarray) -> np.ndarray:
     zero_trim = np.where(tensor == -1, 0, tensor)
     return np.sum(zero_trim, axis=0)
 
-# add some small alpha to avoid 0 values exploding - reflect
-# the fact that potentially every 0-valued country actually
-# received some votes that didn't hit the scoring threshold.
-# Also drop countries that have participated in very few events,
-# they drown out the results from others.
-def edge_average(coincidence: np.ndarray, totals: np.ndarray, countries: dict, thresh=0, alpha=0):
-    n,_ = coincidence.shape
-    alpha_diag = np.identity(coincidence.shape[0]) * alpha
-    res = totals / (coincidence + eps)
-    dropped = []
-    if thresh > 0:
-        for i in range(n):
-            if np.max(coincidence[i,:]) < thresh:
-                res[:,i] = 0
-                res[i,:] = 1
-                dropped.append(countries[i])
-    return res + alpha - alpha_diag, dropped
-
-
-def edge_average_nocor(coincidence: np.ndarray, totals: np.ndarray, countries: dict, thresh=0):
+def edge_average(coincidence: np.ndarray, totals: np.ndarray, countries: dict, thresh=0):
     n,_ = coincidence.shape
     res = totals / (coincidence + eps)
     dropped = []
@@ -47,19 +26,7 @@ def edge_average_nocor(coincidence: np.ndarray, totals: np.ndarray, countries: d
                 dropped.append(countries[i])
     return res, dropped
 
-def recv_average(edge: np.ndarray) -> np.ndarray:
-    return np.average(edge, axis=1)
-
-def bias_matrix(edges: np.ndarray, average: np.ndarray) -> np.ndarray:
-    return (edges.T / (average + eps)).T
-
-# put some base 
-def corr_matrix(bias: np.ndarray) -> np.ndarray:
-    diag = np.identity(bias.shape[0])
-    res = 1 / (bias + eps)
-    return np.where(diag == 1, 0, res)
-
-def sorted_bias(bias: np.ndarray, index: dict, inv=False):
+def sorted_values(bias: np.ndarray, index: dict, inv=False):
     n, m = bias.shape
     sign = 1 if inv else -1
     l = []
@@ -69,17 +36,6 @@ def sorted_bias(bias: np.ndarray, index: dict, inv=False):
                 continue
             l.append((index[j], index[i], bias[i][j]))
     return sorted(l, key=lambda x: sign * x[2])
-
-def value_by_countries(c1, c2, index: dict, mat: np.ndarray):
-    i = index[c1]
-    j = index[c2]
-    return mat[i][j]
-
-def correct_scores(dataset: np.ndarray, corr: np.ndarray) -> np.ndarray:
-    negative_comp = np.where(dataset == -1, -1, 0)
-    nonnegat_comp = np.where(dataset == -1, 0, dataset)
-    corrected = corr @ nonnegat_comp
-    return corrected + negative_comp
 
 def clear_matrix(dataset: np.ndarray, index: dict, countries: dict, dropped: list):
     ind = [index[d] for d in dropped]
@@ -107,28 +63,35 @@ def normalized_score(total: np.ndarray, alpha=1) -> np.ndarray:
     N = np.sum(total)
     return total / N
 
-# 2d probability distribution, get corrections to produce uniform distribution
-def corrections(matrix: np.ndarray) -> np.ndarray:
-    N, _ = matrix.shape
-    row_probabilities = np.sum(matrix, axis=1)
-    row_corrections = 1 / (N * row_probabilities + eps)
-    cell_corrections = (1 / (N ** 2 * matrix.T * row_corrections + eps)).T
-    cell_corrections = np.where(np.identity(N) == 1, 0, cell_corrections)
-    return row_corrections, cell_corrections
+# I keep getting this wrong otherwise
+def expand(vector: np.ndarray, axis=0):
+    N = vector.shape[0]
+    res = np.zeros((N,N)) + vector
+    return res.T if axis == 0 else res
 
-def weights(matrix: np.ndarray) -> np.ndarray:
-    N, _ = matrix.shape
-    return np.where(np.identity(N) == 1, 0, 1 / (matrix + eps)) * 1 / N
+# 2d probability distribution, get corrections to produce uniform distribution
+def corrections(prob: np.ndarray) -> np.ndarray:
+    K, _ = prob.shape
+    row_prob = expand(np.sum(prob, axis=1))
+    row_cor = 1 / (K * row_prob + eps)
+    prob_cor = prob * row_cor
+    col_prob = expand(np.sum(prob_cor, axis=0), 1)
+    cor = col_prob / (K * prob_cor + eps)
+    cor = np.where(np.identity(K) == 1, 0, cor)
+    return row_cor, cor
+
+def weights(cij: np.ndarray) -> np.ndarray:
+    N, _ = cij.shape
+    return np.where(np.identity(N) == 1, 0, 1 / (cij + eps)) * 1 / N
 
 def get_correction_matrix(dataset: np.ndarray, index: dict, countries: dict, norm=False) -> np.ndarray:
     coincidence = coincidence_count(dataset)
     totals = coincidence_total(dataset) # raw totals - more coincident, more score! need to average
-    avg, dropped = edge_average_nocor(coincidence, totals, countries, thresh=10) # mark low incidence countries for removal, add small base score constant
+    avg, dropped = edge_average(coincidence, totals, countries, thresh=10) # mark low incidence countries for removal, add small base score constant
     cleared_avg, index, countries = clear_matrix(avg, index, countries, dropped) # remove low incidence countries
-    score_probability = normalized_score(cleared_avg, alpha=0.5)
+    score_probability = normalized_score(cleared_avg, alpha=0.3)
     quals, cors = corrections(score_probability)
-    correction_matrix = cors.T
-    return quals, correction_matrix, index, countries
+    return quals, cors, index, countries
 
 def write_matrix(filename, comment, matrix: np.ndarray):
     with open(filename, 'w') as  f:
@@ -156,7 +119,7 @@ if __name__ == "__main__":
     average_quality, correction_matrix, index, countries = get_correction_matrix(arr, index, countries)
     voting_weights = weights(correction_matrix)
     dist_matrix = distance_measure(correction_matrix)
-    d_list = sorted_bias(dist_matrix, countries, inv=True)
+    d_list = sorted_values(dist_matrix, countries, inv=True)
 
     newshape = correction_matrix.shape
 

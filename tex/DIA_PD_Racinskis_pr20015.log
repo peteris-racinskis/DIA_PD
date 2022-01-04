@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.26)  4 JAN 2022 14:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.26)  4 JAN 2022 17:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.tex
-(/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.tex
+**/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.tex
+(/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -230,7 +230,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count267
 \l__pdf_internal_box=\box48
-) (/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.aux)
+) (/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.aux)
 \openout1 = `DIA_PD_Racinskis_pr20015.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
@@ -318,7 +318,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 18.
 LaTeX Info: Redefining \pageref on input line 18.
 LaTeX Info: Redefining \nameref on input line 18.
- (/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.out) (/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.out)
+ (/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.out) (/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.out)
 \@outlinefile=\write3
 \openout3 = `DIA_PD_Racinskis_pr20015.out'.
 
@@ -331,36 +331,36 @@ LaTeX Info: Redefining \nameref on input line 18.
 l.63 
       [1
 
-] [2] [3] [4]
-<distmap.png, id=91, 1604.24344pt x 1204.5pt>
+] [2] [3] [4] [5] [6]
+<distmap.png, id=120, 1604.24344pt x 1204.5pt>
 File: distmap.png Graphic file (type png)
 <use distmap.png>
-Package pdftex.def Info: distmap.png  used on input line 163.
+Package pdftex.def Info: distmap.png  used on input line 207.
 (pdftex.def)             Requested size: 208.4121pt x 156.49014pt.
- [5 </home/user/repos/DIA_PD/distmap.png>] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 263.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 263.
- (/home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 263.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 263.
+ [7 </home/user/repos/DIA_PD/tex/distmap.png>] [8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
+ (/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 307.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
 Package rerunfilecheck Info: File `DIA_PD_Racinskis_pr20015.out' has not changed.
-(rerunfilecheck)             Checksum: CA30BCA96FD20D271E22898581201EA3;1335.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 263.
+(rerunfilecheck)             Checksum: A99908FBBC04BFB2B635F53D6C707691;1735.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 307.
  ) 
 Here is how much of TeX's memory you used:
- 9858 strings out of 483183
- 139799 string characters out of 5966291
- 395732 words of memory out of 5000000
- 24718 multiletter control sequences out of 15000+600000
+ 9874 strings out of 483183
+ 140062 string characters out of 5966291
+ 397732 words of memory out of 5000000
+ 24722 multiletter control sequences out of 15000+600000
  538671 words of font info for 46 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,9n,31p,1207b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,31p,1221b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on /home/user/repos/DIA_PD/DIA_PD_Racinskis_pr20015.pdf (8 pages, 156803 bytes).
+Output written on /home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.pdf (10 pages, 169563 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
- 54 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 210 PDF objects out of 1000 (max. 8388607)
+ 182 compressed objects within 2 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

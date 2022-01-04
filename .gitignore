@@ -3,3 +3,5 @@ bin/
 *pyc
 __pycache__
 .venv
+.RData
+.Rhistory

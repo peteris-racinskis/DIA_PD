@@ -3,11 +3,12 @@
 The goal of this project is estimating the amount of bias applied as a function of voter country - participant country, aka the "neighbour rule", a supposed phenomenon whereby neighbouring or otherwise friendly countries inflate each other's scores in the contest. Most of the code is ugly, badly optimized and possibly full of duplication. Either way, it's mostly just high-level scripting so code quality was not imperative.
 
 LOOK FOR FULL-SIZED IMAGES IN THE tex/ DIRECTORY
+
 Direct links
-[MDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-classifier.png)
-[MDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-model.png)
-[IsoMDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-classifier.png)
-[IsoMDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-model.png)
+* [MDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-classifier.png)
+* [MDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-model.png)
+* [IsoMDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-classifier.png)
+* [IsoMDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-model.png)
 
 ## Datasets
 

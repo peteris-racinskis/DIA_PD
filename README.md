@@ -2,7 +2,7 @@
 
 The goal of this project is estimating the amount of bias applied as a function of voter country - participant country, aka the "neighbour rule", a supposed phenomenon whereby neighbouring or otherwise friendly countries inflate each other's scores in the contest. Most of the code is ugly, badly optimized and possibly full of duplication. Either way, it's mostly just high-level scripting so code quality was not imperative.
 
-LOOK FOR FULL SIZED IMAGES IN THE tex/ DIRECTORY
+LOOK FOR FULL-SIZED IMAGES IN THE tex/ DIRECTORY
 
 ## Datasets
 

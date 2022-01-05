@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import CategoricalNB
 from sklearn.svm import LinearSVC
 from vectorize import OUTFILE as INFILE, vec
-from model import sorted_values, write_matrix, distance_measure
+from model import sorted_values, write_matrix, distance_measure, normalized_score, corrections
 VECTORIZED=True
 LOAD=True
 COUNTRIES=43
@@ -54,6 +54,10 @@ def distribution_tensor(clf):
             mat[i][j] = score_distribution(i, j+COUNTRIES, clf)
     return mat
 
+def correction_matrix(pred: np.ndarray):
+    score_prob = normalized_score(pred, 0.01)
+    return corrections(score_prob)
+
 
 if __name__ == "__main__":
     df = read_csv(INFILE)
@@ -72,8 +76,8 @@ if __name__ == "__main__":
             clf = pickle.load(f)
     clf.out_activation_ = "softmax"
     predictions = prediction_matrix(clf)
-    alpha = 0.1 # prevent blowup
-    distances = distance_measure(1 / (predictions + alpha))
+    cor = correction_matrix(predictions)
+    distances = distance_measure(cor)
     one_axis = country_index(list(df.columns)[:COUNTRIES], True)
     pred_list = sorted_values(predictions, one_axis)
     d_list = sorted_values(distances, one_axis, True)

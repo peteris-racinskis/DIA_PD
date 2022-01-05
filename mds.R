@@ -1,5 +1,7 @@
 dist.de <- read.table("Results-1980-2015-dist.txt")
 names <- read.table("Results-1980-2015-name.txt")
+#dist.de <- read.table("classifier-distances.txt")
+#names <- read.table("classifier-names.txt")
 fit <- cmdscale(dist.de, eig = TRUE, k = 2)
 x <- fit$points[, 1]
 y <- fit$points[, 2]

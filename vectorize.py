@@ -68,6 +68,7 @@ def vectorize(df: DataFrame, index: dict, score: dict, filename: str):
             if i % 2000 == 0:
                 print(f"Row {i}")
 
+
 if __name__ == "__main__":
     df = select_years(read_csv(INFILE), STARTYEAR, STOPYEAR)
     index = country_index(df)

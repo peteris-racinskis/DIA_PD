@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.26)  5 JAN 2022 18:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.26)  5 JAN 2022 19:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -328,39 +328,88 @@ LaTeX Info: Redefining \nameref on input line 18.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 
+l.64 
       [1
 
-] [2] [3] [4] [5] [6] [7]
-<distmap.png, id=126, 1604.24344pt x 1204.5pt>
-File: distmap.png Graphic file (type png)
-<use distmap.png>
-Package pdftex.def Info: distmap.png  used on input line 224.
-(pdftex.def)             Requested size: 208.4121pt x 156.49014pt.
- [8 </home/user/repos/DIA_PD/tex/distmap.png>] [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 324.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 324.
+] [2] [3] [4] [5] [6]
+<close-far-classifier.png, id=111, 86.9649pt x 107.2005pt>
+File: close-far-classifier.png Graphic file (type png)
+<use close-far-classifier.png>
+Package pdftex.def Info: close-far-classifier.png  used on input line 227.
+(pdftex.def)             Requested size: 161.59245pt x 199.16928pt.
+<close-far-model.png, id=113, 86.4831pt x 106.9596pt>
+File: close-far-model.png Graphic file (type png)
+<use close-far-model.png>
+Package pdftex.def Info: close-far-model.png  used on input line 232.
+(pdftex.def)             Requested size: 161.0482pt x 199.16928pt.
+ [7 </home/user/repos/DIA_PD/tex/close-far-classifier.png> </home/user/repos/DIA_PD/tex/close-far-model.png>]
+<close-far-lv-classifier.png, id=122, 81.4242pt x 58.2978pt>
+File: close-far-lv-classifier.png Graphic file (type png)
+<use close-far-lv-classifier.png>
+Package pdftex.def Info: close-far-lv-classifier.png  used on input line 240.
+(pdftex.def)             Requested size: 158.96042pt x 113.81102pt.
+<close-far-lv-model.png, id=123, 93.7101pt x 57.816pt>
+File: close-far-lv-model.png Graphic file (type png)
+<use close-far-lv-model.png>
+Package pdftex.def Info: close-far-lv-model.png  used on input line 245.
+(pdftex.def)             Requested size: 184.47842pt x 113.81102pt.
+<output-variance-bad.png, id=124, 193.2018pt x 62.8749pt>
+File: output-variance-bad.png Graphic file (type png)
+<use output-variance-bad.png>
+Package pdftex.def Info: output-variance-bad.png  used on input line 254.
+(pdftex.def)             Requested size: 437.25298pt x 142.26378pt.
+ [8 </home/user/repos/DIA_PD/tex/close-far-lv-classifier.png> </home/user/repos/DIA_PD/tex/close-far-lv-model.png> </home/user/repos/DIA_PD/tex/output-variance-bad.png>]
+<output-variance.png, id=135, 192.4791pt x 63.1158pt>
+File: output-variance.png Graphic file (type png)
+<use output-variance.png>
+Package pdftex.def Info: output-variance.png  used on input line 260.
+(pdftex.def)             Requested size: 433.89041pt x 142.26378pt.
+ [9 </home/user/repos/DIA_PD/tex/output-variance.png>]
+<mds-classifier.png, id=143, 692.5875pt x 633.567pt>
+File: mds-classifier.png Graphic file (type png)
+<use mds-classifier.png>
+Package pdftex.def Info: mds-classifier.png  used on input line 275.
+(pdftex.def)             Requested size: 342.12909pt x 312.9803pt.
+<mds-model.png, id=144, 766.66425pt x 681.14474pt>
+File: mds-model.png Graphic file (type png)
+<use mds-model.png>
+Package pdftex.def Info: mds-model.png  used on input line 280.
+(pdftex.def)             Requested size: 352.2838pt x 312.9803pt.
+ [10 </home/user/repos/DIA_PD/tex/mds-classifier.png> </home/user/repos/DIA_PD/tex/mds-model.png>]
+<iso-mds-classifier.png, id=153, 740.7675pt x 646.21425pt>
+File: iso-mds-classifier.png Graphic file (type png)
+<use iso-mds-classifier.png>
+Package pdftex.def Info: iso-mds-classifier.png  used on input line 287.
+(pdftex.def)             Requested size: 358.78577pt x 312.9803pt.
+<iso-mds-model.png, id=154, 889.52325pt x 792.561pt>
+File: iso-mds-model.png Graphic file (type png)
+<use iso-mds-model.png>
+Package pdftex.def Info: iso-mds-model.png  used on input line 292.
+(pdftex.def)             Requested size: 351.2696pt x 312.9803pt.
+ [11 </home/user/repos/DIA_PD/tex/iso-mds-classifier.png> </home/user/repos/DIA_PD/tex/iso-mds-model.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 305.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 305.
  (/home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 324.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 324.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 305.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 305.
 Package rerunfilecheck Info: File `DIA_PD_Racinskis_pr20015.out' has not changed.
-(rerunfilecheck)             Checksum: 86253C5AD97216D67BF13EE978AE9959;1733.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 324.
+(rerunfilecheck)             Checksum: B0FFAF961102BAE4D346D8E99596BD42;940.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 305.
  ) 
 Here is how much of TeX's memory you used:
- 9877 strings out of 483183
- 140095 string characters out of 5966291
- 397732 words of memory out of 5000000
- 24722 multiletter control sequences out of 15000+600000
- 538671 words of font info for 46 fonts, out of 8000000 for 9000
+ 9920 strings out of 483183
+ 141210 string characters out of 5966291
+ 398732 words of memory out of 5000000
+ 24766 multiletter control sequences out of 15000+600000
+ 539008 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  34i,9n,31p,1425b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on /home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.pdf (11 pages, 175685 bytes).
+ </home/user/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on /home/user/repos/DIA_PD/tex/DIA_PD_Racinskis_pr20015.pdf (13 pages, 377150 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 69 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 227 PDF objects out of 1000 (max. 8388607)
+ 177 compressed objects within 2 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 123 words of extra memory for PDF output out of 10000 (max. 10000000)
 

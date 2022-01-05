@@ -55,7 +55,7 @@ def distribution_tensor(clf):
     return mat
 
 def correction_matrix(pred: np.ndarray):
-    score_prob = normalized_score(pred, 0.01)
+    score_prob = normalized_score(pred, 0.5)
     return corrections(score_prob)
 
 
@@ -103,4 +103,7 @@ if __name__ == "__main__":
     for i in range(10):
         print(d_list[len(pred_list)-1-i*2])
     print("Distances to Latvia:")
-    [print(x) for x in filter(lambda x: x[0] == "lv", d_list)]
+    ds = [x for x in filter(lambda x: x[0] == "lv", d_list)]
+    [print(x) for x in ds[:5]]
+    print("...")
+    [print(x) for x in ds[-5:]]

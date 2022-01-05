@@ -178,8 +178,11 @@ if __name__ == "__main__":
     arr = np.reshape(np.fromfile(datafile, dtype=np.int64), shape)
     arr_c, index, countries = clear_dataset(arr, index)
     
-    print("Variance before and after correction. Train set - 51; test set 5")
-    for _ in range(50):
+    print("Variance before and after correction. Train set - 55; test set 55")
+    v1, v2 = pre_post_variance(arr_c, arr_c)
+    print("{:.5f} / {:.5f} : {:.5f}".format(v1,v2,v2-v1))
+    print("Variance before and after correction. Train set - 51; test set 5; random splits")
+    for _ in range(10):
         trn, tst = split_dataset(arr_c)
         v1, v2 = pre_post_variance(trn, tst)
         print("{:.5f} / {:.5f} : {:.5f}".format(v1,v2,v2-v1))
@@ -216,4 +219,7 @@ if __name__ == "__main__":
     for i in range(10):
         print(d_list[len(d_list)-1-i*2])
     print("Distances to Latvia:")
-    [print(x) for x in filter(lambda x: x[0] == "lv", d_list)]
+    ds = [x for x in filter(lambda x: x[0] == "lv", d_list)]
+    [print(x) for x in ds[:5]]
+    print("...")
+    [print(x) for x in ds[-5:]]

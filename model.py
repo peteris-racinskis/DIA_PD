@@ -110,6 +110,7 @@ def write_matrix(filename, comment, matrix: np.ndarray):
 def apply_correction_matrix(data: np.ndarray, corr: np.ndarray) -> np.ndarray:
     nonnegative = np.where(data == -1, 0, data)
     negative = np.where(data == -1, data, 0)
+    #corrected = nonnegative * corr
     corrected = nonnegative * np.sqrt(corr)
     return corrected + negative
 

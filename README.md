@@ -4,6 +4,12 @@ The goal of this project is estimating the amount of bias applied as a function 
 
 LOOK FOR FULL-SIZED IMAGES IN THE tex/ DIRECTORY
 
+Direct links
+* [MDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-classifier.png)
+* [MDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/mds-model.png)
+* [IsoMDS for neural network output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-classifier.png)
+* [IsoMDS for expected value model output](https://raw.githubusercontent.com/peteris-racinskis/DIA_PD/master/tex/iso-mds-model.png)
+
 ## Datasets
 
 * *votes.csv* - the vote component of the publicly available [EuroVision Song Contest Dataset](https://github.com/Spijkervet/eurovision-dataset)

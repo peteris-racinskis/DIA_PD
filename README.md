@@ -17,7 +17,7 @@ Direct links
 ## Scripts
 
 * *datagen.py* - converts vote dataset into tensor form, where every layer is a weighted adjacency matrix of the participating countries. Missing values indicated by -1. Normalizes the score interval values 10, 12 to 9, 10. Actually very poorly implemented but I only needed to run it a few times.
-* *vectorize.py *- convert the nation codes into one-hot vector encodings. Optionally apply the same to scores, or leave them as discrete string classes.
+* *vectorize.py* - convert the nation codes into one-hot vector encodings. Optionally apply the same to scores, or leave them as discrete string classes.
 * *model.py* - handrolled estimation method. Reduces the data tensor by averaging across competition stages, while keeping track of adjacency counts. Computes average scores, corrects for differences between participant nations, then corrects for biased voting patterns for each voting nation.
 * *model-classifier.py*- rather than trying to work with the data directly to estimate the expected values of scores, train a classifier with some more or less randomly discovered parameters to do it instead.
 * *mds.R* - MDS, isoMDS visualization of distances. Ripped straight from some other homework assignment of mine.
